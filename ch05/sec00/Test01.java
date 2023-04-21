@@ -28,16 +28,16 @@ public class Test01 {
 	static int calculate(int a, int b, char c) {
 		switch(c) {
 		
-		case '+' : 
-			return a+b;
-		case '-' : 
-			return a-b;
-		case '*' : 
-			return a*b;
-		case '/' : 
-			return a/b;
-		default:
-			return 0;
+			case '+' : 
+				return a+b;
+			case '-' : 
+				return a-b;
+			case '*' : 
+				return a*b;
+			case '/' : 
+				return a/b;
+			default:
+				return 0;
 		}
 	}
 }
