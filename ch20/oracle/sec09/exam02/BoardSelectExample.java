@@ -1,9 +1,14 @@
 package ch20.oracle.sec09.exam02;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BoardSelectExample {
 
@@ -39,10 +44,26 @@ public class BoardSelectExample {
 				
 				System.out.println(board);
 				
-				Blob
+				Blob blob = board.getBfiledata();
+				if(blob != null){
+					InputStream is = blob.getBinaryStream();
+					OutputStream os = new FileOutputStream("C:/temp/" + board.getBfilename());
+					is.transferTo(os);
+					os.flush();
+					os.close();
+					is.close();
+				}
 			}
-			
+			rs.close();
+			pstmt.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			if(conn != null){
+				try{
+					conn.close();
+				} catch (SQLException e){}
+			}
 		}
-
 	}
 }
