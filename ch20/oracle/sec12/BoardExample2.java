@@ -39,17 +39,17 @@ public class BoardExample2 {
         list();
     }
 
-    private void read() {
+    public void read() {
         System.out.println("*** read() 메소드 실행됨");
         list();
     }
 
-    private void clear() {
+    public void clear() {
         System.out.println("*** clear() 메소드 실행됨");
         list();
     }
 
-    private void exit() {
+    public void exit() {
         System.exit(0);
     }
 

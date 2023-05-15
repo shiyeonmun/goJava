@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 import ch20.oracle.sec09.exam02.Board;
 
-public class BoardExample3 {
+public class BoardExample4 {
     private Scanner scanner = new Scanner(System.in);
     private Connection conn;
 
-    public BoardExample3(){
+    public BoardExample4(){
         try {
             Class.forName("oracle.jdbc.OracleDriver");
 
@@ -76,16 +76,44 @@ public class BoardExample3 {
         System.out.println();
 
         switch(menuNo){
-            case "1" -> create();
-            case "2" -> read();
-            case "3" -> clear();
-            case "4" -> exit();
+            case "1" -> create(); break;
+            case "2" -> read(); break;
+            case "3" -> clear(); break;
+            case "4" -> exit(); break;
         }
     }
 
     
     public void create(){
-        System.out.println("*** create() 메소드 실행됨");
+        Board board = new Board();
+        System.out.println("[새 게시물 입력]");
+        System.out.print("제목:");
+        board.setBtitle(scanner.nextLine());
+        System.out.print("내용:");
+        board.setBcontent(scanner.nextLine());
+        System.out.print("작성자:");
+        board.setBwriter(scanner.nextLine());
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("보조메뉴: 1. ok | 2. cancel");
+        System.out.print("메뉴 선택: ");
+        int menuNo = scanner.nextInt();
+        if(menuNo.equals("1")){
+            try{
+                String sql = "" +
+                    "INSERT INTO boards (bno, btitle, bcontent, bwriter, bdate) " +
+                    "VALUES (SEQ_BNO.NEXTVAL, ?, ?, ?, SYSDATE)";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, board.getBtitle());
+                pstmt.setString(2, board.getBcontent());
+                pstmt.setString(3, board.getBwriter());
+                pstmt.executeUpdate();
+                pstmt.close();        
+            } catch(Exception e){
+                e.printStackTrace();
+                exit();
+            }
+        }
         list();
     }
 
@@ -104,8 +132,9 @@ public class BoardExample3 {
     }
 
     public static void main(String[] args) {
-        BoardExample3 boardExample = new BoardExample3();
+        BoardExample4 boardExample = new BoardExample4();
         boardExample.list();
     }
 
 }
+
