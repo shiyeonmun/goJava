@@ -76,10 +76,10 @@ public class BoardExample5 {
         System.out.println();
 
         switch(menuNo){
-            case "1" -> create(); break;
-            case "2" -> read(); break;
-            case "3" -> clear(); break;
-            case "4" -> exit(); break;
+            case "1" -> create(); 
+            case "2" -> read(); 
+            case "3" -> clear();
+            case "4" -> exit(); 
         }
     }
 
@@ -97,7 +97,7 @@ public class BoardExample5 {
         System.out.println("-----------------------------------------------------");
         System.out.println("보조메뉴: 1. ok | 2. cancel");
         System.out.print("메뉴 선택: ");
-        int menuNo = scanner.nextInt();
+        String menuNo = scanner.nextLine();
         if(menuNo.equals("1")){
             try{
                 String sql = "" +

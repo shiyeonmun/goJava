@@ -1,7 +1,5 @@
 package ch20.oracle.sec09.exam01;
 
-import lombok.Data;
-
 
 public class User {
 	private String userId;
@@ -12,6 +10,8 @@ public class User {
 	public String getUserId() {
 		return userId;
 	}
+	
+	
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}

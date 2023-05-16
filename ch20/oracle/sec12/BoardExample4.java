@@ -30,12 +30,11 @@ public class BoardExample4 {
     }
 
     public void list(){
-        System.out.println();
         System.out.println("[게시물목록]");
         System.out.println("-----------------------------------------------------");
         System.out.printf("%-6s%-12s%-16s%-40s\n", "no", "writer", "date", "title");
         System.out.println("-----------------------------------------------------");
-
+        
         try{
             String sql = "" + 
                 "SELECT bno, btitle, bcontent, bwriter, bdate " + 
@@ -68,18 +67,17 @@ public class BoardExample4 {
     }
 
     public void mainMenu(){
-        System.out.println();
         System.out.println("-----------------------------------------------------");
         System.out.println("메인메뉴: 1. create | 2. read | 3. clear | 4. exit");
-        System.out.println("메뉴 선택: ");
-        String menuNo = scanner.nextLine();
+        System.out.print("메뉴 선택: ");
         System.out.println();
+        String menuNo = scanner.nextLine();
 
         switch(menuNo){
-            case "1" -> create(); break;
-            case "2" -> read(); break;
-            case "3" -> clear(); break;
-            case "4" -> exit(); break;
+            case "1" -> create();
+            case "2" -> read(); 
+            case "3" -> clear(); 
+            case "4" -> exit(); 
         }
     }
 
@@ -97,7 +95,7 @@ public class BoardExample4 {
         System.out.println("-----------------------------------------------------");
         System.out.println("보조메뉴: 1. ok | 2. cancel");
         System.out.print("메뉴 선택: ");
-        int menuNo = scanner.nextInt();
+        String menuNo = scanner.nextLine();
         if(menuNo.equals("1")){
             try{
                 String sql = "" +
